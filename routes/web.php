@@ -129,6 +129,8 @@ Route::get('/task.lead/{id}', function ($id) {
     $proyek = \App\Models\Proyek::find($id);
 
     $data['status_task'] = \App\Models\StatusTask::all();
+    // $data['detail'] = MTask::all();
+    
 
     return view('task.lead', [
         'proyek' => $proyek,

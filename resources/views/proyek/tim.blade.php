@@ -58,7 +58,7 @@
                     <div class="modal-body">
                         <form action="{{ route('proyek.tim.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            {{-- <input type="hidden" name="id_project" value="{{$proyek[0]->id_project}}"> --}}
+                            <input type="hidden" name="id_project" value="{{$proyek->id_project}}">
                             <div class="form-group row">
                                 <label class="col-sm-2 control-label" for="demo-hor-inputemail">Nama</label>
                                 <div class="col-sm-10">
@@ -78,10 +78,10 @@
                          <div class="form-group row">
                              <label class="col-sm-2 control-label" for="demo-hor-inputemail">Jabatan</label>
                                  <div class="col-sm-10">
-                                    @foreach ($marketing as $marketings)
+                                    {{-- @foreach ($marketing as $marketings) --}}
                                     {{-- <a class="form-control" placeholder="Jabatan" type="text" name="level" value="{{ $marketings->id_user }}">{{ $marketings->level }} </a> --}}
                                     <input type="text" class="form-control" disabled type="text" name="level" id="jabatan">
-                                    @endforeach
+                                    {{-- @endforeach --}}
                                  </div>
                          </div>
                  </div>
@@ -164,7 +164,7 @@
 
         function autofill(){
             let id = $("#name_user").val();
-                
+
                     $.ajax({
                         url: "/getJabatan/"+id,
                         success: function(res){
@@ -180,8 +180,8 @@
                             $("#jabatan").val('');
                         }
                     });
-                    
-            
+
+
             // }
         }
 
