@@ -33,8 +33,15 @@ class TaskController extends Controller
         $mTask->id_status_task = $request->id_status_task;
         $mTask->task = $request->task;
         $mTask->due_date = $request->due_date;
-        $mTask->deskripsi = $request->deskripsi;
+        $desc = $request->summernote;
+        // while($desc.startsWith('<p><br></p>')){
+            $desc = str_replace('<p>', '', $desc);
+            $desc = str_replace('</p>', '', $desc);
+            $desc = str_replace('<br>', '', $desc);
+        // }
+        $mTask->deskripsi = $desc;
         $mTask->status_aktif = 1;
+        // dd($mTask);
         $mTask->save();
 
         return back()->with('success', 'Tambah task berhasil!');
@@ -127,6 +134,7 @@ class TaskController extends Controller
     {
         $data['title'] = 'Ubah';
         $data['task'] = $task;
+        // $data['tas']
         return view('task.edit', $data);
     }
 

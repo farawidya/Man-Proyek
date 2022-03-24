@@ -91,8 +91,7 @@
                             <div class="form-group">
                                     <label>Deskripsi Task <span class="text-danger">*</span></label>
                                     <div class="col-sm-14">
-                                        <textarea
-                                            id="summernote" name="hasil" value="{{ old('hasil') }}" / disabled readonly></textarea>
+                                        <textarea id="summernote" class="summernote" name="summernote" value="{{ old('hasil') }}"></textarea>
                                     </div>
                             </div>
 
@@ -343,7 +342,11 @@
     <script>
         $(function() {
             // Summernote
+            // let data = $('summernote').value;
+            // console.log(data);
+            // $('#summernote').value
             $('#summernote').summernote()
+
         })
         $(function() {
             // Summernote
@@ -356,5 +359,8 @@
         $('#example1').DataTable({
             "responsive": true,
         });
+        let route = ''
+
+
     </script>
 @stop

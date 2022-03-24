@@ -11,4 +11,8 @@ class StatusTask extends Model
 
     protected $table = 'm_status_task';
     protected $primaryKey = 'id_status_task';
+
+
+    
+
 }
