@@ -145,23 +145,23 @@ class TaskController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, task $task)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'Nama' => 'required',
-            'alamat' => 'required',
-            'no_telp' => 'required',
-            'gmail' => 'required',
-            'username' => 'required',
-            'password' => 'required',
-        ]);
-
-        $task->Nama = $request->Nama;
-        $task->no_telp = $request->no_telp;
-        $task->gmail = $request->gmail;
-        $task->alamat = $request->alamat;
-        $task->username = $request->username;
-        $task->password = $request->password;
+        // $request->validate([
+        //     'Nama' => 'required',
+        //     'alamat' => 'required',
+        //     'no_telp' => 'required',
+        //     'gmail' => 'required',
+        //     'username' => 'required',
+        //     'password' => 'required',
+        // ]);
+        // dd($request);
+        $task = Mtask::find($id);
+        $task->task = $request->nama_task != $task->task ? $request->nama_task :$task->task;
+        $task->id_log_project = $request->penerima_task != $task->id_log_project ? $request->penerima_task : $task->id_log_project;
+        $task->due_date = $request->Deadline != $task->due_date ? $request->Deadline :$task->due_date;
+        $task->deskripsi = $request->summernote != $task->deskripsi ? $request->summernote :$task->deskripsi;
+        $task->id_status_task = $request->id_status_task != $task->id_status_task ? $request->id_status_task : $task->id_status_task;
         // if ($request->hasFile('image')) {
         //     $post->delete_image();
         //     $image = $request->file('image');
@@ -169,8 +169,9 @@ class TaskController extends Controller
         //     $image->move('images/post', $name);
         //     $post->image = $name;
         // }
+        // dd($task);
         $task->save();
-        return redirect('task')->with('success', 'Ubah Berhasil');
+        return redirect()->back()->with('success', 'Ubah Berhasil');
     }
 
     /**
@@ -179,10 +180,9 @@ class TaskController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(task $task)
-    {
-        // $task->delete_image();
-        $task->delete();
-        return redirect('task')->with('success', 'Hapus Berhasil');
+    public function destroy($id){
+        // $task->delete();
+        MTask::destroy($id);
+        return redirect()->back()->with('success', 'Hapus Berhasil');
     }
 }

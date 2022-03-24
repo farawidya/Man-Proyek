@@ -36,7 +36,7 @@ class log_project extends Model
 
     public function user()
     {
-        return $this->hasOne('App\Models\Marketing', 'id_user', 'id_log_project');
+        return $this->hasOne('App\Models\Marketing', 'id_user', 'id_user');
     }
 
 

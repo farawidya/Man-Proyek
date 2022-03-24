@@ -126,14 +126,15 @@ Route::get('/task.lead', function () {
 });
 
 Route::get('/task.lead/{id}', function ($id) {
-    $proyek = \App\Models\Proyek::find($id);
-
+    $tim = \App\Models\Proyek::find($id);
+    // $tim = $tim;
     $data['status_task'] = \App\Models\StatusTask::all();
+    // dd($proyek->tim[0]->m_user);
     // $data['detail'] = MTask::all();
-    
+
 
     return view('task.lead', [
-        'proyek' => $proyek,
+        'proyek' => $tim,
         'data' => $data
     ]);
 })->name('task.lead');
@@ -153,6 +154,8 @@ Route::delete('/proyek.tim/deleteTim/{id}', [App\Http\Controllers\ProyekControll
 
 Route::get('/task', [App\Http\Controllers\TaskController::class, 'index'])->name('/task');
 Route::get('/task.lead', [App\Http\Controllers\TaskController::class, 'lead'])->name('task.lead');
+Route::delete('task.lead/delete/{id}',  [App\Http\Controllers\TaskController::class, 'destroy'])->name('task.delete');
+Route::post('task.lead/update/{id}',  [App\Http\Controllers\TaskController::class, 'update'])->name('task.update');
 Route::get('/jadwalmeeting', [App\Http\Controllers\JadwalmeetingController::class, 'index'])->name('jadwalmeeting');
 Route::post('/jadwalmeeting', [App\Http\Controllers\JadwalmeetingController::class, 'store'])->name('jadwalmeeting.store');
 
@@ -160,7 +163,7 @@ Route::get('/marketing', 'MarketingController@index')->name('/marketing');
 Route::post('/marketing', 'MarketingController@store')->name('store.marketing');
 Route::patch('/marketing/{id}/update', 'MarketingController@update')->name('update.marketing');
 Route::get('/client', [App\Http\Controllers\ClientController::class, 'index'])->name('client');
-Route::delete('/client', [App\Http\Controllers\ClientController::class, 'destroy'])->name('client.destroy');
+Route::delete('/client/destroy/{id}', [App\Http\Controllers\ClientController::class, 'destroy'])->name('client.destroy');
 Route::post('/client', [App\Http\Controllers\ClientController::class, 'store'])->name('client.store');
 Route::put('/client/{id}/update', [App\Http\Controllers\ClientController::class, 'update'])->name('client.update');
 

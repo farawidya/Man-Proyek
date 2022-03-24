@@ -115,12 +115,13 @@
                     <tbody>
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $t->nama}}</td>
+                            <td>{{ $t->m_user->nama }}</td>
                             {{--  <td>{{ $p->deskripsi_project }}</td>  --}}
                             @php
                                 $akunUser = App\Models\akun_user::find($t->id_akun);
                             @endphp
-                            <td>{{ ucwords($akunUser->level->level) }}</td>
+                            {{-- <td>{{ ucwords($akunUser->level->level) }}</td> --}}
+                            <td>{{ $t->m_user->akun_user->level->level }}</td>
                             {{--  <td>
                                 <center>1</center>
                             </td>
