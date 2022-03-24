@@ -31,6 +31,7 @@ class ProyekController extends Controller
                             ->join('m_klien', 'm_klien.id_m_klien', '=', 'm_project.id_m_klien')
                             ->join('m_status_project', 'm_status_project.id_status_project', '=', 'm_project.id_status_project')
                             ->get();
+        // dd($proyek);
         // $data['tim'] = Tim::where('id_project', 'like', '%' . $request->q . '%')
         //                     ->join('m_project', 'm_project.id_project', '=', 't_log_project.id_project')
         //                     ->join('m_user', 'm_user.id_user', '=', 't_log_project.id_user')
@@ -70,12 +71,13 @@ class ProyekController extends Controller
         // dd($data['proyek']);
         // $data['status_project'] = Statusproject::all();
         $data['q'] = $request->q;
-        $data['tim'] = Tim::where('id_log_project', 'like', '%' . $request->q . '%')
-                            ->join('m_project', 'm_project.id_project', '=', 't_log_project.id_project')
-                            ->join('m_user', 'm_user.id_user', '=', 't_log_project.id_user')
-                            ->get();
-
+        // $data['tim'] = Tim::where('id_log_project', 'like', '%' . $request->q . '%')
+        // ->join('m_project', 'm_project.id_project', '=', 't_log_project.id_project')
+        // ->join('m_user', 'm_user.id_user', '=', 't_log_project.id_user')
+        // ->get();
+        $data['tim'] = Tim::where('id_project', $id)->get();
         // $data['tim'] = Tim::all();
+        // dd($data['tim']);
 
 
         return view('proyek.tim', $data);
@@ -91,6 +93,7 @@ class ProyekController extends Controller
             $tim = new Tim();
             $tim->id_project = $request->id_project;
             $tim->id_user = $request->id_user;
+            // dd($tim);
             $tim->save();
 
             return back()->with('success', 'Tambah tim berhasil!');
@@ -100,7 +103,7 @@ class ProyekController extends Controller
     }
 
     public function deleteTim($id) {
-        
+
         // $data = akun_user::where('id_akun', $id)->get();
         // dd($data[0]->id_level_akun_user);
 

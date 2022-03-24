@@ -15,8 +15,8 @@ class ClientController extends Controller
     public function index(Request $request)
     {
         $data['title'] = 'Data';
-        $data['client'] = $request->client;
-        $data['client'] = client::where('nama_perusahaan', 'like', '%' . $request->client . '%')
+        $data['clients'] = $request->client;
+        $data['clients'] = client::where('nama_perusahaan', 'like', '%' . $request->client . '%')
                             ->get();
         return view('client.client', $data);
         //
@@ -42,7 +42,7 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        $id = $request->id; 
+        $id = $request->id;
         $request->validate([
             'nama_perusahaan' => 'required',
             'nama_klien' => 'required',
@@ -104,7 +104,7 @@ class ClientController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, client $client)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'nama_perusahaan' => 'required',
@@ -114,8 +114,9 @@ class ClientController extends Controller
             'no_hp' => 'required',
             'alamat' => 'required',
         ]);
+        $client = client::find($id);
 
-        
+
         // $client = client::where('id_m_klien',$id_m_klien)->first();
 
         // $client = client::find($id);
@@ -125,8 +126,9 @@ class ClientController extends Controller
         $client->email = $request->email;
         $client->no_hp = $request->no_hp;
         $client->alamat = $request->alamat;
+        // dd($client);
         $client->save();
-        return redirect('client')->with('success', 'Ubah Berhasil');
+        return redirect()->back()->with('success', 'Ubah Berhasil');
         //
     }
 
@@ -136,10 +138,11 @@ class ClientController extends Controller
      * @param  \App\Models\client  $client
      * @return \Illuminate\Http\Response
      */
-    public function destroy(client $client)
+    public function destroy($id)
     {
-        $client->delete();
-        return redirect('client')->with('success', 'Hapus Berhasil');
+        client::destroy($id);
+        // $client->delete();
+        return redirect()->back()->with('success', 'Hapus Berhasil');
         //
     }
 }
