@@ -20,10 +20,7 @@ class MomController extends Controller
         $data['jadwalmeeting'] = jadwalmeeting::all();
         $data['proyek'] = Proyek::all();
         $data['q'] = $request->q;
-        $data['mom'] = Mom::where('hasil_pembahasan', 'like', '%' . $request->q . '%')
-                        ->join('m_jadwal_meeting', 'm_jadwal_meeting.id_jadwal_meeting', '=', 't_mom.id_jadwal_meeting')
-                        ->join('m_project', 'm_project.id_project', '=', 'm_jadwal_meeting.id_project')
-                        ->get();
+        $data['mom'] = Mom::all();
         return view('mom.mom', $data);
     }
 
@@ -48,15 +45,19 @@ class MomController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id_jadwal_meeting' => 'required',
+            'final_id' => 'required',
             'hasil_pembahasan' => 'required',
         ]);
-
         $mom = new Mom();
-        $mom->id_jadwal_meeting = $request->id_jadwal_meeting;
-        $mom->hasil_pembahasan = $request->hasil_pembahasan;
+        $desc = $request->hasil_pembahasan;
+        $desc = str_replace('<p>', '', $desc);
+        $desc = str_replace('</p>', '', $desc);
+        $desc = str_replace('<br>', '', $desc);
+        $mom->id_jadwal_meeting = $request->final_id;
+        $mom->hasil_pembahasan = $desc;
+        // dd($mom);
         $mom->save();
-        return redirect('mom')->with('success', 'Tambah Berhasil');
+        return redirect()->back()->with('success', 'Tambah Berhasil');
     }
 
     /**
@@ -94,18 +95,20 @@ class MomController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Mom $mom)
+    public function update(Request $request, $id)
     {
         $request->validate([
-            'id_jadwal_meeting' => 'required',
             'hasil_pembahasan' => 'required',
         ]);
-
-        $mom = new Mom();
-        $mom->id_jadwal_meeting = $request->id_jadwal_meeting;
-        $mom->hasil_pembahasan = $request->hasil_pembahasan;
+        $desc = $request->hasil_pembahasan;
+        $desc = str_replace('<p>', '', $desc);
+        $desc = str_replace('</p>', '', $desc);
+        $desc = str_replace('<br>', '', $desc);
+        $mom = Mom::find($id);
+        $mom->hasil_pembahasan = $desc;
+        // dd($mom);
         $mom->save();
-        return redirect('mom')->with('success', 'Tambah Berhasil');
+        return redirect()->back()->with('success', 'Update Berhasil');
     }
 
     /**
@@ -114,10 +117,23 @@ class MomController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Mom $mom)
-    {
-        // $marketing->delete_image();
-        $mom->delete();
-        return redirect('mom')->with('success', 'Hapus Berhasil');
+    public function destroy($id){
+        Mom::destroy($id);
+        return redirect()->back()->with('success', 'Hapus Berhasil');
+    }
+
+    public function getTanggal($id){
+        $mom = jadwalmeeting::where('id_project', $id)->get();
+        // dd($mom);
+        return response()->json($mom);
+    }
+
+    public function getTempat($id){
+        $mom = jadwalmeeting::where('id_jadwal_meeting', $id)->get();
+        return response()->json($mom);
+    }
+    public function getAgenda($id){
+        $mom = jadwalmeeting::where('id_jadwal_meeting', $id)->get();
+        return response()->json($mom);
     }
 }
