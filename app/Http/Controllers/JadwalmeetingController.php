@@ -51,7 +51,6 @@ class JadwalmeetingController extends Controller
             'tempat' => 'required',
             'agenda' => 'required',
         ]);
-
         $jadwalmeeting = new jadwalmeeting();
         $jadwalmeeting->id_project = $request->id_project;
         $jadwalmeeting->start_date = $request->start_date;
@@ -59,6 +58,7 @@ class JadwalmeetingController extends Controller
         $jadwalmeeting->tempat = $request->tempat;
         $jadwalmeeting->agenda = $request->agenda;
         $jadwalmeeting->save();
+        // dd($jadwalmeeting);
         return redirect()->back()->with('success', 'Tambah Berhasil');
     }
 
@@ -99,8 +99,9 @@ class JadwalmeetingController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatejadwalmeetingRequest $request, jadwalmeeting $jadwalmeeting)
+    public function update(Request $request, $id)
     {
+        $jadwalmeeting = jadwalmeeting::find($id);
         $request->validate([
             'id_project' => 'required',
             'start_date' => 'required',
@@ -109,13 +110,13 @@ class JadwalmeetingController extends Controller
             'agenda' => 'required',
         ]);
 
-        $jadwalmeeting->id_project = $request->id_project;
-        $jadwalmeeting->start_date = $request->start_date;
-        $jadwalmeeting->end_date = $request->end_date;
-        $jadwalmeeting->tempat = $request->tempat;
-        $jadwalmeeting->agenda = $request->agenda;
+        $jadwalmeeting->id_project = $request->id_project != $request->id_project ? $jadwalmeeting->id_project : $request->id_project;
+        $jadwalmeeting->start_date = $request->start_date != $request->start_date ? $jadwalmeeting->start_date : $request->start_date;
+        $jadwalmeeting->end_date = $request->end_date != $request->end_date ? $jadwalmeeting->end_date : $request->end_date;
+        $jadwalmeeting->tempat = $request->tempat != $request->tempat ? $jadwalmeeting->tempat : $request->tempat;
+        $jadwalmeeting->agenda = $request->agenda != $request->agenda ? $jadwalmeeting->agenda : $request->agenda;
         $jadwalmeeting->save();
-        return redirect()->back()->with('success', 'Tambah Berhasil');
+        return redirect()->back()->with('success', 'Update Berhasil');
     }
 
     /**
@@ -128,5 +129,20 @@ class JadwalmeetingController extends Controller
     {
         $jadwalmeeting->delete();
         return redirect('jadwalmeeting')->with('success', 'Hapus Berhasil');
+        
+    }
+    public function getEvent(){
+        $jadwalmeeting = jadwalmeeting::all();
+        // dd($jadwalmeeting[0]->id_jadwal_meeting);
+        $eventCal = array();
+        foreach ($jadwalmeeting as $row) {
+            $eventCal[] = array(
+                'id' => $row->id_jadwal_meeting,
+                'title' => $row->proyek->nama_project,
+                'start' => $row->start_date,
+                'end' => $row->end,
+            );
+        }
+        return json_encode($eventCal);
     }
 }

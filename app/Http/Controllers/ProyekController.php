@@ -261,9 +261,7 @@ class ProyekController extends Controller
 
     public function getJabatan($id){
         $data = akun_user::where('id_akun', $id)->get();
-        // dd($data[0]->level());
-
-        // dd($data);
+        
         $jabatan = level_akun_user::where('id_level_akun_user', $data[0]->id_level_akun_user)->get();
         return json_encode($jabatan);
     }
