@@ -158,6 +158,8 @@ Route::delete('task.lead/delete/{id}',  [App\Http\Controllers\TaskController::cl
 Route::post('task.lead/update/{id}',  [App\Http\Controllers\TaskController::class, 'update'])->name('task.update');
 Route::get('/jadwalmeeting', [App\Http\Controllers\JadwalmeetingController::class, 'index'])->name('jadwalmeeting');
 Route::post('/jadwalmeeting', [App\Http\Controllers\JadwalmeetingController::class, 'store'])->name('jadwalmeeting.store');
+Route::post('/jadwalmeeting/update/{id}', [App\Http\Controllers\JadwalmeetingController::class, 'update'])->name('jadwalmeeting.update');
+Route::get('/full-calender', [App\Http\Controllers\JadwalmeetingController::class, 'getEvent']);
 
 Route::get('/marketing', 'MarketingController@index')->name('/marketing');
 Route::post('/marketing', 'MarketingController@store')->name('store.marketing');
