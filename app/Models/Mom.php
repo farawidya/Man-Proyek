@@ -31,5 +31,8 @@ class Mom extends Model
     //     if ($this->image && file_exists(public_path('images/post/' . $this->image)))
     //         return unlink(public_path('images/post/' . $this->image));
     // }
+    function jadwal(){
+        return $this->belongsTo('App\Models\jadwalmeeting', 'id_jadwal_meeting', 'id_jadwal_meeting');
+    }
     }
     

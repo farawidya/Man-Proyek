@@ -169,6 +169,9 @@ Route::delete('/client/destroy/{id}', [App\Http\Controllers\ClientController::cl
 Route::post('/client', [App\Http\Controllers\ClientController::class, 'store'])->name('client.store');
 Route::put('/client/{id}/update', [App\Http\Controllers\ClientController::class, 'update'])->name('client.update');
 
+Route::post('/mom/store', [MomController::class, 'store'])->name('mom.store');
+
+
 Route::patch('/client/{id}', 'ClientController@update')->name('update.client');
 
 Route::get('/proyek', [App\Http\Controllers\ProyekController::class, 'index'])->name('proyek');
@@ -191,6 +194,8 @@ Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'inde
 Route::resource('users', \App\Http\Controllers\UserController::class)
     ->middleware('auth');
 
+
+
 Route::resource('post', PostController::class);
 Route::resource('nomor', NomorController::class);
 Route::resource('projek', ProjekController::class);
@@ -202,3 +207,9 @@ Route::resource('mom', MomController::class);
 Route::resource('marketing', MarketingController::class);
 
 Route::resource('devlop', DeveloperController::class);
+
+Route::get('listTanggal/{id}', [MomController::class, 'getTanggal']);
+Route::get('listTempat/{id}', [MomController::class, 'getTempat']);
+Route::get('listAgenda/{id}', [MomController::class, 'getAgenda']);
+Route::post('mom/update/{id}', [MomController::class, 'update'])->name('mom.update');
+Route::delete('mom/destroy/{id}', [MomController::class, 'destroy'])->name('mom.destroy');

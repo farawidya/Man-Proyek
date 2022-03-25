@@ -35,9 +35,9 @@ class TaskController extends Controller
         $mTask->due_date = $request->due_date;
         $desc = $request->summernote;
         // while($desc.startsWith('<p><br></p>')){
-            $desc = str_replace('<p>', '', $desc);
-            $desc = str_replace('</p>', '', $desc);
-            $desc = str_replace('<br>', '', $desc);
+        $desc = str_replace('<p>', '', $desc);
+        $desc = str_replace('</p>', '', $desc);
+        $desc = str_replace('<br>', '', $desc);
         // }
         $mTask->deskripsi = $desc;
         $mTask->status_aktif = 1;
