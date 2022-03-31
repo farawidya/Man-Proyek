@@ -231,7 +231,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Modal Show -->
             <div class="modal fade" id="showTask{{$task->id_task}}" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">

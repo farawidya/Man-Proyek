@@ -182,7 +182,7 @@ Route::resource('users', \App\Http\Controllers\UserController::class)
 
 Route::get('/developer', [App\Http\Controllers\DeveloperController::class, 'index'])->name('developer');
 Route::get('/dokumen', [App\Http\Controllers\DokumenController::class, 'index'])->name('dokumen.index');
-Route::get('/dokumen/view', [App\Http\Controllers\DokumenController::class, 'view'])->name('dokumen.view');
+Route::get('/dokumen/view/{id}', [App\Http\Controllers\DokumenController::class, 'view'])->name('dokumen.view');
 Route::post('/dokumen', [App\Http\Controllers\DokumenController::class, 'view'])->name('dokumen.store');
 Route::delete('/dokumen', [App\Http\Controllers\DokumenController::class, 'view'])->name('dokumen.destroy');
 
@@ -208,6 +208,9 @@ Route::resource('marketing', MarketingController::class);
 
 Route::resource('devlop', DeveloperController::class);
 
+Route::get('getDate/{id}', [NomorController::class, 'getDate']);
+Route::get('getClient/{id}', [NomorController::class, 'getClient']);
+Route::get('getKode/{id}', [NomorController::class, 'getKode']);
 Route::get('listTanggal/{id}', [MomController::class, 'getTanggal']);
 Route::get('listTempat/{id}', [MomController::class, 'getTempat']);
 Route::get('listAgenda/{id}', [MomController::class, 'getAgenda']);

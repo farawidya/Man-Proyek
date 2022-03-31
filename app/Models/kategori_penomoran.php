@@ -15,6 +15,10 @@ class kategori_penomoran extends Model
     protected $fillable = [
         'kategori',
     ];
+    
+    function nomor(){
+        return $this->hasMany('App\Models\kategori_penomoran', 'id_kategori_penomoran', 'id_kategori_penomoran');
+    }
 
     
 }

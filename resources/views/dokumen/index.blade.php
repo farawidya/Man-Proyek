@@ -41,7 +41,7 @@
                         <td>{{ $proyek->nama_perusahaan }}</td>
                         <td>{{ $proyek->waktuberakhir }}</td>
                         <td>
-                            <center><a class="btn btn-sm btn-info" target="_blank" href="{{route('dokumen.view', ['id' => $proyek->id_project])}}">
+                            <center><a class="btn btn-sm btn-info" target="_blank" href="{{route('dokumen.view', $proyek->id_project)}}">
                                 Lihat Dokumen 
                                 <i class="fas fa-external-link-alt"></i>
                             </a>

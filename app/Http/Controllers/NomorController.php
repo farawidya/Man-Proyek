@@ -8,6 +8,7 @@ use App\Models\client;
 use App\Models\proyek;
 use App\Models\m_dokumen;
 use App\Models\kategori_penomoran;
+use Illuminate\Support\Facades\Storage;
 
 class NomorController extends Controller
 {
@@ -22,11 +23,8 @@ class NomorController extends Controller
         $data['q'] = $request->q;
         $data['kategori_penomoran'] = kategori_penomoran::all();
         $data['proyek'] = proyek::all();
-        $data['nomor'] = Nomor::where('penomoran', 'like', '%' . $request->q . '%')
-                        ->join('m_kategori_penomoran', 'm_kategori_penomoran.id_kategori_penomoran', '=', 't_dokumen_penomoran.id_kategori_penomoran')
-                        ->join('m_dokumen', 'm_dokumen.id_dokumen', '=', 't_dokumen_penomoran.id_dokumen')
-                        ->join('m_project', 'm_project.id_project', '=', 't_dokumen_penomoran.id_project')
-                        ->get();
+        $data['nomor'] = Nomor::all();
+        $data['client'] = client::all();
 
         return view('nomor.index', $data);
     }
@@ -36,12 +34,12 @@ class NomorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
-    {
-        $data['title'] = 'Tambah';
-        $data['categories'] = $m_kategori_penomoran->kategori;
-            return view('nomor.create',$data);
-    }
+    // public function create(Request $request)
+    // {
+    //     $data['title'] = 'Tambah';
+    //     $data['categories'] = $m_kategori_penomoran->kategori;
+    //         return view('nomor.create',$data);
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -51,48 +49,56 @@ class NomorController extends Controller
      */
     public function store(Request $request)
     {
-         $request->validate([
+        // dd($request);
+        $request->validate([
             'tanggal'=>'required',
             'judul_dokumen' => 'required',
             'dokumen' => 'required',
-            'penomoran' => 'required',
             'kategori_penomoran' => 'required',
+            'client'=>'required',
         ]);
 
-        // $kodeawal = Kategori_Penomoran::where('kode', 'like', '%' . $request->q . '%');
-        // $no = 1;
-        // if($noUrutAkhir) {
-        //     echo "No urut surat di database : " . $noUrutAkhir;
-        //     echo "<br>";
-        //     echo "Pake Format : " . {{ $dokumen->kategori_penomoran }}. '/' . date() .'/' . $bulanRomawi[date('n')] .'/' . date('Y');
-        // }
-        // else {
-        //     echo "No urut surat di database : 0" ;
-        //     echo "<br>";
-        //     echo "Pake Format : " . sprintf("%03s", $no). '/' . $AWAL .'/' . $bulanRomawi[date('n')] .'/' . date('Y');
-        // }
-
         $m_dokumen = new m_dokumen();
-            $m_dokumen->judul_dokumen= $request->judul_dokumen;
-            // $m_dokumen->dokumen= $request->namaFile;
-            // $nm->move(public_path().'/dokumenproject', $namaFile);
+        
+        $file = $request->file('dokumen');
+        $file_names = $request->fileKategori.'-'.$request->fileTanggal.'-'.$request->fileRomawi.'-'.$request->fileClient.'.'.$file->getClientOriginalExtension();
+        
+        $m_dokumen->judul_dokumen= $request->judul_dokumen;
+        $m_dokumen->dokumen = 'dokumen/'.$file_names;
+        Storage::putFileAs('public/dokumen', $file, $file_names);
+        $m_dokumen->save();
+        // dd($m_dokumen);
 
-        if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $name = time()."_".$file->getClientOriginalName();
-            $file->move(public_path().'file/dokumenproject', $name);
-            $m_dokumen->dokumen = $name;
-        }    
-            $m_dokumen->save();
+        $penomoran = new nomor();
+        $penomoran->id_kategori_penomoran = $request->kategori_penomoran;
+        $penomoran->id_project = $request->client;
+        $penomoran->id_dokumen = $m_dokumen->id_dokumen;
+        $penomoran->tanggal = $request->tanggal;
+        $penomoran->penomoran = $request->fileKategori.'/'.$request->fileTanggal.'/'.$request->fileRomawi.'/'.$request->fileClient;
+        $penomoran->save();
+        // dd($penomoran);
 
-            $nomor = new Nomor();
-            $dokumen->id_dokumen = $m_dokumen->id_dokumen;
-            $nomor->tanggal = $request->tanggal;
-            $nomor->penomoran = $request->penomoran;
-            $nomor->id_kategori_penomoran = $request->id_kategori_penomoran;
-            $nomor->id_project = $request->id_project;
-            $nomor->save();
-            return redirect('nomor')->with('success', 'Tambah Berhasil');
+
+
+
+        // $file_name = 
+
+        // if ($request->hasFile('file')) {
+        //     $file = $request->file('file');
+        //     $name = time()."_".$file->getClientOriginalName();
+        //     $file->move(public_path().'file/dokumenproject', $name);
+        //     $m_dokumen->dokumen = $name;
+        // }
+        //     $m_dokumen->save();
+
+        //     $nomor = new Nomor();
+        //     $dokumen->id_dokumen = $m_dokumen->id_dokumen;
+        //     $nomor->tanggal = $request->tanggal;
+        //     $nomor->penomoran = $request->penomoran;
+        //     $nomor->id_kategori_penomoran = $request->id_kategori_penomoran;
+        //     $nomor->id_project = $request->id_project;
+        //     $nomor->save();
+        return redirect()->back()->with('success', 'Tambah Berhasil');
 
 
     }
@@ -159,5 +165,31 @@ class NomorController extends Controller
     {
         $nomor->delete();
         return redirect('nomor')->with('success', 'Hapus Data Berhasil');
+    }
+
+
+    public function getKode($id){
+        $data = kategori_penomoran::where('id_kategori_penomoran', $id)->get();
+        return response()->json($data);
+    }
+    public function getClient($id){
+        $data = client::where('id_m_klien', $id)->get();
+        return response()->json($data);
+    }
+    public function getDate($id){
+        $data = nomor::all();
+        $count = 1;
+        if($data->isEmpty()){
+            $arr = array(
+                'romawi'=> 'I',
+            );
+            return response()->json($arr);
+        }
+        else{
+            $target = nomor::where(date('m', 'tanggal'), $id)->get();
+            // foreach($data as $item){
+
+            // }
+        }
     }
 }
