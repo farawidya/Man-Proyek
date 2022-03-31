@@ -173,7 +173,19 @@
                     <td>{{ $p->waktuberakhir }}</td>
                     <td>{{ $p->nama_perusahaan }}</td>
                     <td>
-                        <center><a class="btn btn-xs btn-success" target="_blank" href="">{{ $p->status_project }}</a></center>
+                        <center>
+                            @if($p->status_project == "Masuk")
+                                <a class="btn btn-xs btn-primary" target="_blank" href="">{{ $p->status_project }}</a>
+                            @elseif($p->status_project == "Pending")
+                            <a class="btn btn-xs btn-info" target="_blank" href="">{{ $p->status_project }}</a>
+                            @elseif($p->status_project == "Berjalan")
+                            <a class="btn btn-xs btn-warning" target="_blank" href="">{{ $p->status_project }}</a>
+                            @elseif($p->status_project == "Cancel")
+                            <a class="btn btn-xs btn-danger" target="_blank" href="">{{ $p->status_project }}</a>
+                            @elseif($p->status_project == "Selesai")
+                            <a class="btn btn-xs btn-success" target="_blank" href="">{{ $p->status_project }}</a>
+                            @endif
+                        </center>
                     </td>
                     <td>
                         <center><a class="btn btn-xs btn-info modal-title" target="_blank" href="{{route('proyek.tim', ['id' => $p->id_project])}}">Tim</a></center>
