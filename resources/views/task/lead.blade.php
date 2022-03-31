@@ -319,9 +319,24 @@
                 </td>
                 <td>
 
-
-                    <center><a class="btn btn-sm btn-success" target="_blank"
+                    <center>
+                        @if ($task->statusTask->status_task == "Revisi")
+                        
+                            <a class="btn btn-sm btn-warning" target="_blank"
                             href="">{{$task->statusTask->status_task ?? ''}}</a>
+                        
+                        @elseif ($task->statusTask->status_task == "Proses")
+                        
+                            <a class="btn btn-sm btn-primary" target="_blank"
+                            href="">{{$task->statusTask->status_task ?? ''}}</a>
+                        
+                        @else
+                        
+                            <a class="btn btn-sm btn-success" target="_blank"
+                            href="">{{$task->statusTask->status_task ?? ''}}</a>
+                        
+                        @endif
+
                     </center>
                 </td>
                 <td>
