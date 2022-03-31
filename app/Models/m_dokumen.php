@@ -19,4 +19,7 @@ class m_dokumen extends Model
     ];
 
     protected $guarded = ['id_dokumen'];
+    function nomor(){
+        return $this->belongsTo('App\Models\nomor', 'id_dokumen', 'id_dokumen');
+    }
 }

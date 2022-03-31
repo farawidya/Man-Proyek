@@ -73,7 +73,7 @@
                                 <div class="form-group">
                                     <label>Hasil Pembahasan <span class="text-danger">*</span></label>
                                     <div class="col-sm-14">
-                                        <textarea  class="summernote1" name="hasil_pembahasan" 
+                                        <textarea  class="summernote1" name="hasil_pembahasan"
                                             >{{ $mom->hasil_pembahasan }}</textarea>
                                     </div>
                                 </div>
@@ -147,7 +147,7 @@
                         data-bs-target="#showMom{{$mom->id_mom}}">Show</a>
                     <a class="btn btn-sm btn-warning modal-title" id="exampleModalLabel" data-bs-toggle="modal"
                         data-bs-target="#editMom{{$mom->id_mom}}">Edit</a>
-                    <form method="POST" action="{{ route('mom.destroy', $mom->id_mom) }}" style="display: inline-block;">
+                    <form method="POST" action="{{ route('mom.destroy', $mom->id_mom ) }}" style="display: inline-block;">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-sm btn-danger">Delete</button>

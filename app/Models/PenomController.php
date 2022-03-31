@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class PenomController extends Model
 {
     use HasFactory;
+    
 }

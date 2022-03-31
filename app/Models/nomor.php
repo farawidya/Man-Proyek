@@ -36,4 +36,10 @@ class nomor extends Model
         if ($this->image && file_exists(public_path('images/post/' . $this->image)))
             return unlink(public_path('images/post/' . $this->image));
     }
+    function kategori(){
+        return $this->belongsTo('App\Models\kategori_penomoran', 'id_kategori_penomoran', 'id_kategori_penomoran');
+    }
+    function dokumen(){
+        return $this->belongsTo('App\Models\m_dokumen', 'id_dokumen', 'id_dokumen');
+    }
 }

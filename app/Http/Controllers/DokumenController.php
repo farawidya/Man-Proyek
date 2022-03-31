@@ -30,11 +30,12 @@ class DokumenController extends Controller
         //
     }
 
-    public function view(Request $request)
+    public function view(Request $request, $id)
     {
         $data['title'] = 'Data';
         $data['q'] = $request->q;
-        $data['proyek'] = Proyek::all();
+        $data['proyek'] = Proyek::find($id);
+        // dd($data['proyek']);
         $data['kategori_penomoran'] = kategori_penomoran::all();
         $data['dokumen'] = Dokumen::where('dokumen', 'like', '%' . $request->q . '%')
                             ->join('m_kategori_penomoran', 'm_kategori_penomoran.id_kategori_penomoran', '=', 't_dokumen_status_project.id_kategori_penomoran')
