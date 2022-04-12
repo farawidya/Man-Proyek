@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'Admin Project',
+    'title' => 'Manajemen Project',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -32,7 +32,7 @@ return [
 
     'use_ico_only' => false,
     'use_full_favicon' => false,
-
+    // 'favicon' => 'vendor/spero/logo_spero_biru.png',
     /*
     |--------------------------------------------------------------------------
     | Logo
@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>Project',
+    'logo' => '<b>PT SPERO</b>',
     'logo_img' => 'vendor/spero/logo_spero_biru.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -191,10 +191,10 @@ return [
     'dashboard_url' => 'home',
     'logout_url' => 'logout',
     'login_url' => 'login',
-    'register_url' => 'register',
+    // 'register_url' => 'register',
     'password_reset_url' => 'password/reset',
     'password_email_url' => 'password/email',
-    'profile_url' => false,
+    'profile_url' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -225,79 +225,54 @@ return [
     */
 
     'menu' => [
-        [
-            'text'   => 'search',
-            'search' => true,
-            'topnav' => true,
-        ],
+        // [
+        //     'text'   => 'search',
+        //     'search' => true,
+        //     'topnav' => true,
+        // ],
         [
             'text' => 'Dashboard',
             'url'  => '/dashboard',
             'icon' => 'fas fa-tachometer-alt',
         ],
-        // [
-        //     'text' => 'Management Admin',
-        //     'url'  => '/admin',
-        //     'icon' => 'fas fa-users',
-        // ],
-        // [
-        //     'text' => 'Management Project Manager',
-        //     'url'  => '/projek',
-        //     'icon' => 'fas fa-tasks',
-        // ],
-        // [
-        //     'text' => 'Management Analis',
-        //     'url'  => '/analis',
-        //     'icon' => 'fas fa-user', 
-        // ],
-        // [
-        //     'text' => 'Management Desain Grafis',
-        //     'url'  => '/desain',
-        //     'icon' => 'fas fa-cogs',
-        // ],
-        // [
-        //     'text' => 'Management Developer',
-        //     'url'  => '/developer',
-        //     'icon' => 'fas fa-cogs',
-        // ],
         [
-            'text' => 'Management User',
+            'text' => 'User Management',
             'url'  => '/marketing',
             'icon' => 'fas fa-user',
         ],
         [
-            'text' => 'Management Client',
+            'text' => 'Client Management',
             'url'  => '/client',
             'icon' => 'fas fa-building',
         ],
         [
-            'text' => 'Management Proyek',
+            'text' => 'Project Management',
             'url'  => '/proyek',
             'icon' => 'fas fa-boxes',
         ],
         [
-            'text' => 'Management Task',
+            'text' => 'Task Project',
             'url'  => '/task',
             'icon' => 'fas fa-tasks',
         ],
         [
-            'text' => 'Dokumen Project',
+            'text' => 'Document Project',
             'url'  => '/dokumen',
             'icon' => 'fas fa-folder',
         ],
         [
-            'text' => 'Management Penomoran Dokumen',
+            'text' => 'Penomoran Document',
             'url'  => '/nomor',
             'icon' => 'fas fa-list-ol',
         ],
         [
-            'text' => 'Management Jadwal Meeting',
+            'text' => 'Meeting Schedule',
             'url'  => '/jadwalmeeting',
             'icon' => 'fas fa-calendar-alt',
         ],
         
         [
-            'text' => 'Management MOM',
+            'text' => 'Minutes of Meeting',
             'url'  => '/mom',
             'icon' => 'fas fa-file',
         ],

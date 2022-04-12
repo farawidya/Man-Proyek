@@ -15,7 +15,7 @@
         <form class="form-inline">
             <div class="form-group mr-1">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambah">
-                    Tambah
+                <i class="fas fa-plus"></i> Tambah MOM
                 </button>
             </div>
         </form>
@@ -27,7 +27,6 @@
                     <th>No.</th>
                     <th>Nama Project</th>
                     <th>Tanggal</th>
-                    <th>Tempat</th>
                     <th>Agenda</th>
                     <th>Hasil Pembahasan</th>
                     <th>Action</th>
@@ -130,7 +129,6 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-info" data-bs-dismiss="modal">Download PDF</button>
                         <button type="button" class="btn btn-info" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
@@ -139,19 +137,20 @@
                 <td>{{ $no++ }}</td>
                 <td>{{ $mom->jadwal->proyek->nama_project }}</td>
                 <td>{{ $mom->jadwal->start_date }}</td>
-                <td>{{ $mom->jadwal->tempat }}</td>
                 <td>{{ $mom->jadwal->agenda }}</td>
-                <td>{{ $mom->hasil_pembahasan }}</td>
+                <td>{{--{{ $mom->hasil_pembahasan }}--}} {!!$mom->hasil_pembahasan!!} </td>
                 <td>
                     <a class="btn btn-sm btn-info modal-title" id="exampleModalLabel" data-bs-toggle="modal"
-                        data-bs-target="#showMom{{$mom->id_mom}}">Show</a>
+                        data-bs-target="#showMom{{$mom->id_mom}}"><i class="fas fa-eye"></i></a>
                     <a class="btn btn-sm btn-warning modal-title" id="exampleModalLabel" data-bs-toggle="modal"
-                        data-bs-target="#editMom{{$mom->id_mom}}">Edit</a>
+                        data-bs-target="#editMom{{$mom->id_mom}}"><i class="fas fa-pen"></i></a>
                     <form method="POST" action="{{ route('mom.destroy', $mom->id_mom ) }}" style="display: inline-block;">
                         @csrf
                         @method('DELETE')
-                        <button class="btn btn-sm btn-danger">Delete</button>
+                        <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
                     </form>
+                    <a href ="/exportpdf" class="btn btn-sm btn-success modal-title" id="exampleModalLabel">
+                        <i class="fas fa-file-pdf"></i></a>
                 </td>
             </tr>
             @endforeach
@@ -201,7 +200,7 @@
                             onchange="updateAgenda()">
                             @foreach ($jadwalmeeting as $jadwalmeetings)
                             @if ($jadwalmeetings == old('jadwalmeeting'))
-                            <option value="{{ $jadwalmeetings->tempat }}" selected></option>
+                            <option value="{{ $jadwalmeetings->tempat }}" selected> </option>
                             @else
                             <option value="{{ $jadwalmeetings->id_jadwal_meeting }}">
                                 {{ $jadwalmeetings->tempat }}</option>

@@ -10,6 +10,7 @@
 @if (session('success'))
 <p class="alert alert-success">{{ session('success') }}</p>
 @endif
+<?php $no = 1; ?>
 <div class="card">
     <div class="card-header" style="background-color: #17a2b8;color: #ffffff;">
         <h3 class="card-title"><b>Informasi Project</b></h3>
@@ -231,6 +232,7 @@
                     </div>
                 </div>
             </div>
+
             <!-- Modal Show -->
             <div class="modal fade" id="showTask{{$task->id_task}}" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -282,16 +284,24 @@
 
                                 <div class="form-group">
                                     <label>Deskripsi Task<span class="text-danger">*</span></label>
-                                    <div class="col-sm-14">
-                                        <textarea id="summernote" class="summernote1" name="summernote"
-                                            value="">{{$task->deskripsi}}</textarea>
+                                    <div class="card">
+                                        <div class="card-body">
+                                        <input type="hidden" value="" name="" id="" />
+                                        <dl class="row col-sm-20">
+                                            <dd class="col-sm-15">{{--{{ $task->deskripsi }}--}} {!!$task->deskripsi!!} </dt>
+                                        </dl>
+            </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>File <span class="text-danger">*</span></label>
-                                    <div class="col-sm-14">
-                                        <textarea id="summernote" class="summernote2" name="summernote"
-                                            value=""></textarea>
+                                    <div class="card">
+                                        <div class="card-body">
+                                        <input type="hidden" value="" name="" id="" />
+                                        <dl class="row col-sm-20">
+                                            <dd class="col-sm-15">file yang dikirim anggota (tulisan, link, foto) </dt>
+                                        </dl>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
@@ -305,7 +315,7 @@
 
             <tr>
                 <td>
-                    <center>{{ $loop->iteration }}</center>
+                    <center>{{ $no++ }}</center>
                 </td>
                 <td>
                     <center>{{$task->task}}</center>

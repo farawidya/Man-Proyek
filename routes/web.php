@@ -4,17 +4,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MomController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\NomorController;
 use App\Http\Controllers\ClientController;
-use App\Http\Controllers\ProjekController;
 use App\Http\Controllers\ProyekController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\DeveloperController;
 use App\Http\Controllers\DokumenController;
 use App\Http\Controllers\MarketingController;
+use App\Http\Controllers\JadwalmeetingController;
 
 
 /*
@@ -46,12 +44,6 @@ Route::get('/admin', function () {
     ]);
 });
 
-Route::get('/project', function () {
-    return view('project', [
-        "title" => "project"
-    ]);
-});
-
 Route::get('/marketing', function () {
     return view('marketing', [
         "title" => "marketing"
@@ -68,23 +60,7 @@ Route::get('/mom', function () {
         "title" => "mom"
     ]);
 });
-Route::get('/project/show', function () {
-    return view('project/show', [
-        "title" => "Home"
-    ]);
-});
 
-Route::get('/projek/create', function () {
-    return view('projek/create', [
-        "title" => "Create"
-    ]);
-});
-
-Route::get('/projek/edit', function () {
-    return view('projek/edit', [
-        "title" => "edit"
-    ]);
-});
 // Route::get('/dokumen', function () {
 //     return view('dokumen', [
 //     ]);
@@ -159,6 +135,7 @@ Route::post('task.lead/update/{id}',  [App\Http\Controllers\TaskController::clas
 Route::get('/jadwalmeeting', [App\Http\Controllers\JadwalmeetingController::class, 'index'])->name('jadwalmeeting');
 Route::post('/jadwalmeeting', [App\Http\Controllers\JadwalmeetingController::class, 'store'])->name('jadwalmeeting.store');
 Route::post('/jadwalmeeting/update/{id}', [App\Http\Controllers\JadwalmeetingController::class, 'update'])->name('jadwalmeeting.update');
+// Route::delete('jadwalmeeting/delete/{id}',  [App\Http\Controllers\JadwalmeetingController::class, 'destroy'])->name('jadwalmeeting.delete');
 Route::get('/full-calender', [App\Http\Controllers\JadwalmeetingController::class, 'getEvent']);
 
 Route::get('/marketing', 'MarketingController@index')->name('/marketing');
@@ -179,8 +156,6 @@ Route::post('/proyek', [App\Http\Controllers\ProyekController::class, 'store'])-
 Route::put('/proyek/{id}/update', [App\Http\Controllers\ProyekController::class, 'update'])->name('proyek.update');
 Route::resource('users', \App\Http\Controllers\UserController::class)
     ->middleware('auth');
-
-Route::get('/developer', [App\Http\Controllers\DeveloperController::class, 'index'])->name('developer');
 Route::get('/dokumen', [App\Http\Controllers\DokumenController::class, 'index'])->name('dokumen.index');
 Route::get('/dokumen/view/{id}', [App\Http\Controllers\DokumenController::class, 'view'])->name('dokumen.view');
 Route::post('/dokumen', [App\Http\Controllers\DokumenController::class, 'view'])->name('dokumen.store');
@@ -194,20 +169,13 @@ Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'inde
 Route::resource('users', \App\Http\Controllers\UserController::class)
     ->middleware('auth');
 
-
-
-Route::resource('post', PostController::class);
 Route::resource('nomor', NomorController::class);
-Route::resource('projek', ProjekController::class);
 // Route::resource('dokumen', DokumenController::class);
 Route::resource('proyek', ProyekController::class);
 
 Route::resource('mom', MomController::class);
 
 Route::resource('marketing', MarketingController::class);
-
-Route::resource('devlop', DeveloperController::class);
-
 Route::get('getDate/{id}', [NomorController::class, 'getDate']);
 Route::get('getClient/{id}', [NomorController::class, 'getClient']);
 Route::get('getKode/{id}', [NomorController::class, 'getKode']);
@@ -216,3 +184,4 @@ Route::get('listTempat/{id}', [MomController::class, 'getTempat']);
 Route::get('listAgenda/{id}', [MomController::class, 'getAgenda']);
 Route::post('mom/update/{id}', [MomController::class, 'update'])->name('mom.update');
 Route::delete('mom/destroy/{id}', [MomController::class, 'destroy'])->name('mom.destroy');
+Route::get('/exportpdf', [MomController::class, 'exportpdf'])->name('exportpdf');

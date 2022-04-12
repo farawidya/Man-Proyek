@@ -6,6 +6,7 @@ use App\Models\Mom;
 use App\Models\jadwalmeeting;
 use App\Models\Proyek;
 use Illuminate\Http\Request;
+use PDF;
 
 class MomController extends Controller
 {
@@ -122,6 +123,13 @@ class MomController extends Controller
         return redirect()->back()->with('success', 'Hapus Berhasil');
     }
 
+    public function exportpdf(){
+        $data = Mom::all();
+
+        view()->share('data', $data);
+        $pdf = PDF::loadview('mom.mom-pdf');
+        return $pdf->download('mom.pdf');
+    }
     public function getTanggal($id){
         $mom = jadwalmeeting::where('id_project', $id)->get();
         // dd($mom);

@@ -19,11 +19,11 @@
             <input type="hidden" value="" name="" id="" />
             <dl class="row col-sm-8">
                 <dt class="col-sm-2">Nama Project </dt>
-                <dd class="col-sm-10" id="nama_project">: Company Profile</dd>
+                <dd class="col-sm-10" id="nama_project">: Web Pengelolaan Produk A-Box</dd>
                 <dt class="col-sm-2">Client </dt>
-                <dd class="col-sm-10" id="nama_klien">: Helena</dd>
+                <dd class="col-sm-10" id="nama_klien">: A-Box</dd>
                 <dt class="col-sm-2">Deadline </dt>
-                <dd class="col-sm-10" id="waktu_berakhir">: 2022-04-06</dd>
+                <dd class="col-sm-10" id="waktu_berakhir">: 2022-05-07</dd>
                 {{-- <dt class="col-sm-2">Tingkat </dt>
                 <dd class="col-sm-10" id="tingkat"></dd>
                 <dt class="col-sm-2">Kelas </dt>
@@ -36,7 +36,7 @@
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Upload Progress Task</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Upload Task</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -47,23 +47,34 @@
                              <div class="card">
                                 <div class="card-body">
                                 <input type="hidden" value="" name="" id="" />
-								<dl class="row col-sm-8">
-									<dt class="col-sm-8">Penerima Task </dt>
-									<dd class="col-sm-15" id="task">: Helena Putri</dd>
-									<dt class="col-sm-8">Task </dt>
-									<dd class="col-sm-15" id="task">: Design UI</dd>
-									<dt class="col-sm-8">Deadline </dt>
-									<dd class="col-sm-15" id="deadline task">: 22-07-03</dd>
-									<dt class="col-sm-8">Status Task </dt>
-									<dd class="col-sm-15" id="status task"> : Proses</dd>
+								<dl class="row col-sm-6">
+									<dt class="col-sm-6">Penerima Task </dt>
+									<dd class="col-sm-15" id="nama">: Nana</dd>
+									<dt class="col-sm-6">Task </dt>
+									<dd class="col-sm-15" id="task">: Analisis Sistem</dd>
+									<dt class="col-sm-6">Deadline </dt>
+									<dd class="col-sm-15" id="deadline task">: 2022-02-28</dd>
+									<dt class="col-sm-6">Status Task </dt>
+									<dd class="col-sm-15" id="status task"> : Selesai</dd>
 							    </dl>
                                 </div>
                              </div>
                              <div class="form-group">
-                                    <label>Deskripsi Task <span class="text-danger">*</span></label>
+                                    <label>Deskripsi Task<span class="text-danger">*</span></label>
+                                    <div class="card">
+                                        <div class="card-body">
+                                        <input type="hidden" value="" name="" id="" />
+                                        <dl class="row col-sm-20">
+                                            <dd class="col-sm-15">Deskripsi task dari lead </dt>
+                                        </dl>
+                                        </div>
+                                    </div>
+                                </div>
+                             <div class="form-group">
+                                    <label>Upload Task <span class="text-danger">*</span></label>
                                     <div class="col-sm-14">
                                         <textarea
-                                            id="summernote" name="hasil" value="{{ old('hasil') }}" / disabled readonly></textarea>
+                                            id="summernote" name="hasil" value="{{ old('hasil') }}"></textarea>
                                     </div>
                             </div>
                             <div class="modal-footer">
@@ -81,7 +92,7 @@
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Tambah</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Detail Task</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -100,22 +111,28 @@
 									<dt class="col-sm-8">Status Task </dt>
 									<dd class="col-sm-15" id="status task"> : Proses</dd>
 							</dl>
-							<div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Link<span
-                                        class="text-danger"></span></label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" type="text" name="nama" value="" />
-                                </div>
-                            </div>
-							<div class="form-group row">
-                                <label class="col-sm-2 col-form-label">File Task </label>
-                                <div class="col-sm-10">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="inputGroupFile01">
-                                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                            <div class="form-group">
+                                    <label>Deskripsi Task<span class="text-danger">*</span></label>
+                                    <div class="card">
+                                        <div class="card-body">
+                                        <input type="hidden" value="" name="" id="" />
+                                        <dl class="row col-sm-20">
+                                            <dd class="col-sm-15">Deskripsi task dari lead </dt>
+                                        </dl>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+							<div class="form-group">
+                                    <label>Task Upload<span class="text-danger">*</span></label>
+                                    <div class="card">
+                                        <div class="card-body">
+                                        <input type="hidden" value="" name="" id="" />
+                                        <dl class="row col-sm-20">
+                                            <dd class="col-sm-15">file yang dikirim anggota (tulisan, link, foto) </dt>
+                                        </dl>
+                                        </div>
+                                    </div>
+                                </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Kembali</button>
 							</div>
@@ -126,11 +143,11 @@
       </div>  
 	
 	    <!-- Modal Edit -->
-    <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Tambah</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Edit Task</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -138,35 +155,41 @@
             <div class="modal-body">
               <form action="" method="POST" enctype="multipart/form-data">
                               @csrf
-                             <input type="hidden" value="" name="" id="" />
-								<dl class="row col-sm-8">
-									<dt class="col-sm-8">Penerima Task </dt>
-									<dd class="col-sm-15" id="task">: Helena Putri</dd>
-									<dt class="col-sm-8">Task </dt>
-									<dd class="col-sm-15" id="task">: Design UI</dd>
-									<dt class="col-sm-8">Deadline </dt>
-									<dd class="col-sm-15" id="deadline task">: 22-07-03</dd>
-									<dt class="col-sm-8">Status Task </dt>
-									<dd class="col-sm-15" id="status task"> : Proses</dd>
-							</dl>
-							<div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Link<span
-                                        class="text-danger"></span></label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" type="text" name="nama" value="" />
+                             <div class="card">
+                                <div class="card-body">
+                                <input type="hidden" value="" name="" id="" />
+								<dl class="row col-sm-6">
+									<dt class="col-sm-6">Penerima Task </dt>
+									<dd class="col-sm-15" id="nama">: Nana</dd>
+									<dt class="col-sm-6">Task </dt>
+									<dd class="col-sm-15" id="task">: Analisis Sistem</dd>
+									<dt class="col-sm-6">Deadline </dt>
+									<dd class="col-sm-15" id="deadline task">: 2022-02-28</dd>
+									<dt class="col-sm-6">Status Task </dt>
+									<dd class="col-sm-15" id="status task"> : Selesai</dd>
+							    </dl>
                                 </div>
-                            </div>
-							<div class="form-group row">
-                                <label class="col-sm-2 col-form-label">File Task </label>
-                                <div class="col-sm-10">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="inputGroupFile01">
-                                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                             </div>
+                             <div class="form-group">
+                                    <label>Deskripsi Task<span class="text-danger">*</span></label>
+                                    <div class="card">
+                                        <div class="card-body">
+                                        <input type="hidden" value="" name="" id="" />
+                                        <dl class="row col-sm-20">
+                                            <dd class="col-sm-15">Deskripsi task dari lead </dt>
+                                        </dl>
+                                        </div>
                                     </div>
                                 </div>
+                             <div class="form-group">
+                                    <label>Upload Task <span class="text-danger">*</span></label>
+                                    <div class="col-sm-14">
+                                        <textarea
+                                            id="summernote1" name="hasil" value="{{ old('hasil') }}"></textarea>
+                                    </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary">Simpan</button>
+                                <button type="button" class="btn btn-primary">Upload</button>
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Kembali</button>
 							</div>
             </form>
@@ -206,10 +229,81 @@
                             <center>1</center>
                         </td>
                         <td>
-                            <center>Design UI</center>
+                            <center> Analisis Sistem</center>
                         </td>
                         <td>
-                            <center>2022-02-27</center>
+                            <center>2022-02-28</center>
+                        </td>
+                        <td>
+                            <center><a class="btn btn-sm btn-success" target="_blank" href="">Selesai</a>
+                            </center>
+                        </td>
+                        <td>
+                            <div class="form-group mr-1">
+                                <center><button type="button" class="btn btn-sm btn-info modal-title" data-toggle="modal" data-target="#upload">
+                                    <i class="fas fa-upload"></i>
+                                    Upload
+                                </button></center>
+                            </div>
+                        </td>
+						<td>
+							<center>
+                            <div class="form-group mr-1">
+                                <button type="button" class="btn btn-sm btn-warning modal-title" data-toggle="modal" data-target="#edit">
+                                    <i class="fas fa-pen"></i>
+                                </button>
+								<button type="button" class="btn btn-sm btn-secondary modal-title" data-toggle="modal" data-target="#show">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+							</div>
+                            </center>
+						</td>
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                            <center>2</center>
+                        </td>
+                        <td>
+                            <center> Perancangan Database</center>
+                        </td>
+                        <td>
+                            <center>2022-03-03</center>
+                        </td>
+                        <td>
+                            <center><a class="btn btn-sm btn-success" target="_blank" href="">Selesai</a>
+                            </center>
+                        </td>
+                        <td>
+                            <div class="form-group mr-1">
+                                <center><button type="button" class="btn btn-sm btn-info modal-title" data-toggle="modal" data-target="#upload">
+                                    <i class="fas fa-upload"></i>
+                                    Upload
+                                </button></center>
+                            </div>
+                        </td>
+						<td>
+							<center>
+                            <div class="form-group mr-1">
+                                <button type="button" class="btn btn-sm btn-warning modal-title" data-toggle="modal" data-target="#edit">
+                                    <i class="fas fa-pen"></i>
+                                </button>
+								<button type="button" class="btn btn-sm btn-secondary modal-title" data-toggle="modal" data-target="#show">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+							</div>
+                            </center>
+						</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <center>3</center>
+                        </td>
+                        <td>
+                            <center> Pemodelan Database</center>
+                        </td>
+                        <td>
+                            <center>2022-04-02</center>
                         </td>
                         <td>
                             <center><a class="btn btn-sm btn-success" target="_blank" href="">Proses</a>
@@ -235,6 +329,7 @@
 							</div>
                             </center>
 						</td>
+                        
                     </tr>
                 </tbody>
             </table>

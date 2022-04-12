@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Jadwal Meeting')
+@section('title', 'Meeting Schedule')
 
 @section('content_header')
-<h1>Jadwal Meeting</h1>
+<h1>Meeting Schedule</h1>
 @stop
 
 @section('content')
@@ -16,7 +16,7 @@
         <form class="form-inline">
             <div class="form-group mr-1">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahMeet">
-                    Tambah
+                <i class="fas fa-plus"></i> Tambah Schedule
                 </button>
             </div>
         </form>
@@ -24,7 +24,7 @@
     </div>
     <div class="card-body table-responsive">
         <center><label>
-                <h2>List Jadwal Meeting</h2>
+                <h2>List Meeting Schedule</h2>
             </label></center>
         <table class="table table-bordered table-striped table-hover mb-0" id="example2">
             <thead>
@@ -145,13 +145,13 @@
                 <td>{{ $jadwalmeeting->agenda }}</td>
                 <td>
                     <a class="btn btn-sm btn-info modal-title" id="exampleModalLabel" data-bs-toggle="modal"
-                        data-bs-target="#showEvent{{$jadwalmeeting->id_jadwal_meeting}}">Show</a>
+                        data-bs-target="#showEvent{{$jadwalmeeting->id_jadwal_meeting}}"><i class="fas fa-eye"></i></a>
                     <a class="btn btn-sm btn-warning modal-title" id="exampleModalLabel" data-bs-toggle="modal"
-                        data-bs-target="#editEvent{{$jadwalmeeting->id_jadwal_meeting}}">Edit</a>
+                        data-bs-target="#editEvent{{$jadwalmeeting->id_jadwal_meeting}}"><i class="fas fa-pen"></i></a>
                     <form method="POST" action="" style="display: inline-block;">
                         @csrf
-                        @method('DELETE')
-                        <button class="btn btn-sm btn-danger">Delete</button>
+                        {{ method_field('DELETE') }}
+                        <button class="btn btn-sm btn-danger"> <i class="fas fa-trash"></i></button>
                     </form>
                 </td>
             </tr>
